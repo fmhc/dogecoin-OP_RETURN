@@ -55,6 +55,7 @@ OP_RETURN_MAX_BLOCKS=10 # maximum number of blocks to try when retrieving data
 
 OP_RETURN_NET_TIMEOUT=10 # how long to time out (in seconds) when communicating with bitcoin node
 
+SAT = 100000000 # coin divisible by how many satoshis
 
 # User-facing functions
 
@@ -149,7 +150,9 @@ def OP_RETURN_store(data, testnet=False):
 		# Some preparation for this iteration
 	
 		last_txn=((data_ptr+OP_RETURN_MAX_BYTES)>=data_len) # is this the last tx in the chain?
-		change_amount=input_amount-OP_RETURN_BTC_FEE
+		change_amount=(
+			int(input_amount * SAT) - int(OP_RETURN_BTC_FEE * SAT)
+			) / SAT
 		metadata=data[data_ptr:data_ptr+OP_RETURN_MAX_BYTES]
 			
 		# Build and send this transaction
@@ -338,9 +341,9 @@ def OP_RETURN_create_txn(inputs, outputs, metadata, metadata_pos, testnet):
 	if metadata_len<=75:
 		payload=bytearray((metadata_len,))+metadata # length byte + data (https://en.bitcoin.it/wiki/Script)
 	elif metadata_len<=256:
-		payload="\x4c"+bytearray((metadata_len,))+metadata # OP_PUSHDATA1 format
+		payload=b"\x4c"+bytearray((metadata_len,))+metadata # OP_PUSHDATA1 format
 	else:
-		payload="\x4d"+bytearray((metadata_len%256,))+bytearray((int(metadata_len/256),))+metadata # OP_PUSHDATA2 format
+		payload=b"\x4d"+bytearray((metadata_len%256,))+bytearray((int(metadata_len/256),))+metadata # OP_PUSHDATA2 format
 	
 	metadata_pos=min(max(0, metadata_pos), len(txn_unpacked['vout'])) # constrain to valid values
 
