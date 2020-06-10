@@ -1,6 +1,6 @@
 # dogecoin-OP_RETURN v1
 
-## Based on python-OP_RETURN v2 by Coinspark)
+## Based on python-OP_RETURN v2 by Coinspark
 
 Simple Python commands and libraries for using OP_RETURNs in dogecoin transactions.
 
