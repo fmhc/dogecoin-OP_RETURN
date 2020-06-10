@@ -40,7 +40,9 @@ On the command line:
 * Examples:
 
   python send-OP_RETURN.py 149wHUMa41Xm2jnZtqgRx94uGbZD9kPXnS 0.001 'Hello, blockchain!'
+  
   python send-OP_RETURN.py 149wHUMa41Xm2jnZtqgRx94uGbZD9kPXnS 0.001 48656c6c6f2c20626c6f636b636861696e21
+  
   python send-OP_RETURN.py mzEJxCrdva57shpv62udriBBgMECmaPce4 0.001 'Hello, testnet!' 1
 
 
@@ -59,6 +61,7 @@ As a library:
 * Examples
 
   OP_RETURN_send('149wHUMa41Xm2jnZtqgRx94uGbZD9kPXnS', 0.001, 'Hello, blockchain!')
+  
   OP_RETURN_send('mzEJxCrdva57shpv62udriBBgMECmaPce4', 0.001, 'Hello, testnet!', True)
 
 
@@ -80,6 +83,7 @@ On the command line:
 * Examples:
 
   python store-OP_RETURN.py 'This example stores 47 bytes in the blockchain.'
+  
   python store-OP_RETURN.py 'This example stores 44 bytes in the testnet.' 1
   
   
@@ -97,6 +101,7 @@ As a library:
 * Examples:
 
   OP_RETURN_store('This example stores 47 bytes in the blockchain.')
+  
   OP_RETURN_store('This example stores 44 bytes in the testnet.', True)
 
 
@@ -119,6 +124,7 @@ On the command line:
 * Examples:
 
   python retrieve-OP_RETURN.py 356115-052075
+  
   python retrieve-OP_RETURN.py 396381-059737 1
   
   
@@ -143,6 +149,7 @@ As a library:
 * Examples:
 
   OP_RETURN_retrieve('356115-052075')
+  
   OP_RETURN_retrieve('396381-059737', 1, True)
   
   
