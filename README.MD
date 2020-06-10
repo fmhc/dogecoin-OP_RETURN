@@ -1,37 +1,36 @@
-python-OP_RETURN v2
+dogecoin-OP_RETURN v1 (based upon python-OP_RETURN v2 by Coinspark)
 ===================
-Simple Python commands and libraries for using OP_RETURNs in bitcoin transactions.
 
-Copyright (c) Coin Sciences Ltd - http://coinsecrets.org/
+Simple Python commands and libraries for using OP_RETURNs in dogecoin transactions.
 
 MIT License (see headers in files)
 
 
 REQUIREMENTS
 ------------
-* Python 2.5 or later (including Python 3)
-* Bitcoin Core 0.9 or later
+* Python >= 3
+* Dogecoin Core 1.14.2 or later
 
 
 BEFORE YOU START
 ----------------
 Check the constant settings at the top of OP_RETURN.py.
-If you just installed Bitcoin Core, wait for it to download and verify old blocks.
+If you just installed Dogecoin Core, wait for it to download and verify old blocks.
 If using as a library, add 'from OP_RETURN import *' in your Python script file.
 
 
-TO SEND A BITCOIN TRANSACTION WITH SOME OP_RETURN METADATA
+TO SEND A DOGECOIN TRANSACTION WITH SOME OP_RETURN METADATA
 ----------------------------------------------------------
 
 On the command line:
 
 * python send-OP_RETURN.py <send-address> <send-amount> <metadata> <testnet (optional)>
 
-  <send-address> is the bitcoin address of the recipient
+  <send-address> is the dogecoin address of the recipient
   <send-amount> is the amount to send (in units of BTC)
   <metadata> is a hex string or raw string containing the OP_RETURN metadata
              (auto-detection: treated as a hex string if it is a valid one)
-  <testnet> should be 1 to use the bitcoin testnet, otherwise it can be omitted
+  <testnet> should be 1 to use the dogecoin testnet, otherwise it can be omitted
 
 * Outputs an error if one occurred or the txid if sending was successful
 
@@ -48,10 +47,10 @@ As a library:
 
 * OP_RETURN_send(send_address, send_amount, metadata, testnet=False)
 
-  send_address is the bitcoin address of the recipient
+  send_address is the dogecoin address of the recipient
   send_amount is the amount to send (in units of BTC)
   metadata is a string of raw bytes containing the OP_RETURN metadata
-  testnet is whether to use the bitcoin testnet network (False if omitted)
+  testnet is whether to use the dogecoin testnet network (False if omitted)
 
 * Returns: {'error': '<some error string>'}
        or: {'txid': '<sent txid>'}
@@ -72,12 +71,10 @@ On the command line:
 
   <data> is a hex string or raw string containing the data to be stored
          (auto-detection: treated as a hex string if it is a valid one)
-  <testnet> should be 1 to use the bitcoin testnet, otherwise it can be omitted
+  <testnet> should be 1 to use the dogecoin testnet, otherwise it can be omitted
 
 * Outputs an error if one occurred or if successful, the txids that were used to store
   the data and a short reference that can be used to retrieve it using this library.
-
-* Wait a few seconds then check http://coinsecrets.org/ for your OP_RETURN transactions.
 
 * Examples:
 
@@ -90,7 +87,7 @@ As a library:
 * OP_RETURN_store(data, testnet=False)
 
   data is the string of raw bytes to be stored
-  testnet is whether to use the bitcoin testnet network (False if omitted)
+  testnet is whether to use the dogecoin testnet network (False if omitted)
   
 * Returns: {'error': '<some error string>'}
        or: {'txids': ['<1st txid>', '<2nd txid>', ...],
@@ -111,7 +108,7 @@ On the command line:
 * python retrieve-OP_RETURN.py <ref> <testnet (optional)>
 
   <ref> is the reference that was returned by a previous storage operation
-  <testnet> should be 1 to use the bitcoin testnet, otherwise it can be omitted
+  <testnet> should be 1 to use the dogecoin testnet, otherwise it can be omitted
   
 * Outputs an error if one occurred or if successful, the retrieved data in hexadecimal
   and ASCII format, a list of the txids used to store the data, a list of the blocks in
@@ -130,7 +127,7 @@ As a library:
 
   ref is the reference that was returned by a previous storage operation
   max_results is the maximum number of results to retrieve (in general, omit for 1)
-  testnet is whether to use the bitcoin testnet network (False if omitted)
+  testnet is whether to use the dogecoin testnet network (False if omitted)
 
 * Returns: {'error': '<some error string>'}
        or: {'data': '<raw binary data>',
@@ -151,5 +148,5 @@ As a library:
 
 VERSION HISTORY
 ---------------
-v2.0.2 - 30 June 2015
-* First port of php-OP_RETURN to Python
+v1 - 10 June 2020
+* First port of python-OP_RETURN from Bitcoin to Dogecoin
