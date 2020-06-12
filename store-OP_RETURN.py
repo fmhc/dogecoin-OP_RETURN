@@ -22,32 +22,43 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-
-import sys, string
+from string import hexdigits
 from OP_RETURN import *
+from binascii import hexlify
+import sys
 
+if len(sys.argv) < 2:
+    sys.exit(
+        '''Usage:
+        python store-OP_RETURN.py <data> <testnet (optional)>'''
+    )
 
-if len(sys.argv)<2:
-	sys.exit(
-'''Usage:
-python store-OP_RETURN.py <data> <testnet (optional)>'''
-	)
-	
-data=sys.argv[1]
+data = sys.argv[1]
 
-if len(sys.argv)>2:
-	testnet=bool(sys.argv[2])
+if len(sys.argv) > 2:
+    testnet = bool(sys.argv[2])
 else:
-	testnet=False
+    testnet = False
 
-data_from_hex=OP_RETURN_hex_to_bin(data)
-if data_from_hex is not None:
-	data=data_from_hex
+# data_from_hex = OP_RETURN_hex_to_bin(data)
+#
+# if data_from_hex is not None:
+#     data = data_from_hex
+#
 
-result=OP_RETURN_store(data, testnet)
+len_data_in_bytes = len(data.encode('utf-8'))
+
+if len_data_in_bytes > 80:
+    result = {'error': 'Data exceeds maximum size'}
+elif all(it in hexdigits for it in data):
+    result = OP_RETURN_store(data, testnet)
+else:
+    data = hexlify(data.encode('utf-8'))
+    result = OP_RETURN_store(data, testnet)
 
 if 'error' in result:
-	print('Error: '+result['error'])
+    print('Error: ' + result['error'])
 else:
-	print("TxIDs:\n"+"\n".join(result['txids'])+"\n\nRef: "+result['ref']+"\n\nWait a few seconds then check on: http://"+
-		('testnet.' if testnet else '')+'coinsecrets.org/')
+    print("TxIDs:\n" + "\n".join(result['txids']) + "\n\nRef: " + result[
+        'ref'] + "\n\nWait a few seconds then check on: http://" +
+          ('testnet.' if testnet else '') + 'coinsecrets.org/')
