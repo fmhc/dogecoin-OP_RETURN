@@ -35,7 +35,9 @@ python send-OP_RETURN.py <send-address> <send-amount> <metadata> <testnet (optio
 Examples:
 python send-OP_RETURN.py 149wHUMa41Xm2jnZtqgRx94uGbZD9kPXnS 0.001 'Hello, blockchain!'
 python send-OP_RETURN.py 149wHUMa41Xm2jnZtqgRx94uGbZD9kPXnS 0.001 48656c6c6f2c20626c6f636b636861696e21
+python send-OP_RETURN.py nXL3mD1FAdn6VANSbP2QMQkNgrH67dfpJV 0.001 '0E1F432' 1
 python send-OP_RETURN.py mzEJxCrdva57shpv62udriBBgMECmaPce4 0.001 'Hello, testnet blockchain!' 1'''
+
 	)
 
 dummy, send_address, send_amount, metadata = sys.argv[0:4]

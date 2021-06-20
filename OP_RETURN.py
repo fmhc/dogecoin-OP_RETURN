@@ -49,7 +49,7 @@ else:
     OP_RETURN_BITCOIN_USER = ''  # leave empty to read from ~/.dogecoin/dogecoin.conf (Unix only)
     OP_RETURN_BITCOIN_PASSWORD = ''  # leave empty to read from ~/.dogecoin/dogecoin.conf (Unix only)
 
-OP_RETURN_BTC_FEE = 0.0001  # BTC fee to pay per transaction
+OP_RETURN_BTC_FEE = 1.00  # BTC fee to pay per transaction
 OP_RETURN_BTC_DUST = 0.00001  # omit BTC outputs smaller than this
 
 OP_RETURN_MAX_BYTES = 80  # maximum bytes in an OP_RETURN (80 as of Bitcoin 0.11)
@@ -166,6 +166,7 @@ def OP_RETURN_store(data, testnet=False):
         change_amount = (
                                 int(input_amount * SAT) - int(OP_RETURN_BTC_FEE * SAT)
                         ) / SAT
+        #change_amount += 0.001
         metadata = data[data_ptr:data_ptr + OP_RETURN_MAX_BYTES]
 
         # Build and send this transaction
@@ -342,6 +343,7 @@ def OP_RETURN_select_inputs(total_amount, testnet):
     # List and sort unspent inputs by priority
 
     unspent_inputs = OP_RETURN_bitcoin_cmd('listunspent', testnet, 0)
+    print(unspent_inputs)
     if not isinstance(unspent_inputs, list):
         return {'error': 'Could not retrieve list of unspent inputs'}
 
@@ -401,6 +403,7 @@ def OP_RETURN_sign_send_txn(raw_txn, testnet):
     if not ('complete' in signed_txn and signed_txn['complete']):
         return {'error': 'Could not sign the transaction'}
 
+    print(signed_txn)
     send_txid = OP_RETURN_bitcoin_cmd('sendrawtransaction', testnet, signed_txn['hex'])
     if not (isinstance(send_txid, basestring) and len(send_txid) == 64):
         return {'error': 'Could not send the transaction'}

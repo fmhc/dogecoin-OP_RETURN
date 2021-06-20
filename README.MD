@@ -1,23 +1,25 @@
-# dogecoin-OP_RETURN v1
-
-## Based on python-OP_RETURN v2 by Coinspark
+# dogecoin-OP_RETURN v2
 
 Simple Python commands and libraries for using OP_RETURNs in dogecoin transactions.
+
+based on INCT-DD/dogecoin-OP_RETURN v1 which was
+based on python-OP_RETURN v2 by Coinspark
+
 
 MIT License (see headers in files)
 
 
-REQUIREMENTS
+Requirements
 ------------
 * Python >= 3
 * Dogecoin Core 1.14.2 or later
 
 
-BEFORE YOU START
+before you start
 ----------------
-Check the constant settings at the top of OP_RETURN.py.
-If you just installed Dogecoin Core, wait for it to download and verify old blocks.
-If using as a library, add 'from OP_RETURN import *' in your Python script file.
+* Check the constant settings at the top of OP_RETURN.py.
+* If you just installed Dogecoin Core, wait for it to download and verify old blocks.
+* If using as a library, add 'from OP_RETURN import *' in your Python script file.
 
 
 TO SEND A DOGECOIN TRANSACTION WITH SOME OP_RETURN METADATA
@@ -28,7 +30,7 @@ On the command line:
 * python send-OP_RETURN.py <send-address> <send-amount> <metadata> <testnet (optional)>
 
   <send-address> is the dogecoin address of the recipient
-  <send-amount> is the amount to send (in units of BTC)
+  <send-amount> is the amount to send (in units of Dogecoin)
   <metadata> is a hex string or raw string containing the OP_RETURN metadata
              (auto-detection: treated as a hex string if it is a valid one)
   <testnet> should be 1 to use the dogecoin testnet, otherwise it can be omitted
@@ -158,3 +160,6 @@ VERSION HISTORY
 ---------------
 v1 - 10 June 2020
 * First port of python-OP_RETURN from Bitcoin to Dogecoin
+
+v2 - 20 June 2021 - fmhc
+* Setting up as external test suite for smart doge project
