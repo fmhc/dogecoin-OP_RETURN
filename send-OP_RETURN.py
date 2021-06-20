@@ -33,10 +33,11 @@ if len(sys.argv)<4:
 python send-OP_RETURN.py <send-address> <send-amount> <metadata> <testnet (optional)>
 
 Examples:
-python send-OP_RETURN.py 149wHUMa41Xm2jnZtqgRx94uGbZD9kPXnS 0.001 'Hello, blockchain!'
-python send-OP_RETURN.py 149wHUMa41Xm2jnZtqgRx94uGbZD9kPXnS 0.001 48656c6c6f2c20626c6f636b636861696e21
-python send-OP_RETURN.py nXL3mD1FAdn6VANSbP2QMQkNgrH67dfpJV 0.001 '0E1F432' 1
-python send-OP_RETURN.py mzEJxCrdva57shpv62udriBBgMECmaPce4 0.001 'Hello, testnet blockchain!' 1'''
+python3 send-OP_RETURN.py 149wHUMa41Xm2jnZtqgRx94uGbZD9kPXnS 0.001 'Hello, blockchain!'
+python3 send-OP_RETURN.py 149wHUMa41Xm2jnZtqgRx94uGbZD9kPXnS 0.001 48656c6c6f2c20626c6f636b636861696e21
+python3 send-OP_RETURN.py nXL3mD1FAdn6VANSbP2QMQkNgrH67dfpJV 0.001 '0E1F432' 1
+python3 send-OP_RETURN.py "D6CTaQskt9JjdXj6nHJ6VvbhXHYJkK4Qcz" 1.0 '0e01f432'
+python3 send-OP_RETURN.py mzEJxCrdva57shpv62udriBBgMECmaPce4 0.001 'Hello, testnet blockchain!' 1'''
 
 	)
 
